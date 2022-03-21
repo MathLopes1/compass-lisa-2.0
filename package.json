@@ -1,0 +1,26 @@
+{
+  "name": "compass-lisa-2.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --fix",
+    "dev": "ts-node-dev --transpile-only src/server.ts"
+  },
+  "author": "Matheus Lopes",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.7",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.0",
+    "typescript": "^4.6.2",
+    "winston": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.21",
+    "ts-node-dev": "^1.1.8"
+  }
+}
