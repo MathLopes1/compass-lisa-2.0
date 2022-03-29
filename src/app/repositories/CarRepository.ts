@@ -1,5 +1,4 @@
 import { Injectable } from '@decorators/di';
-import { getRepository } from 'typeorm';
 
 import Car from '../schema/CarSchema';
 
@@ -9,8 +8,7 @@ import { ICarRepository } from '../interfaces/Car/ICarRepository';
 @Injectable()
 class CarRepository implements ICarRepository {
   async create(car: Icar): Promise<Icar> {
-    const repository = getRepository(Car);
-    const newCar = repository.create(car);
+    const newCar = Car.create(car);
     return newCar;
   }
 }

@@ -17,7 +17,7 @@ class App {
   }
 
   routes(): void {
-    this.server.use('/api', IndexRoutes.routes);
+    this.server.use('/api', IndexRoutes.routes());
   }
 }
 

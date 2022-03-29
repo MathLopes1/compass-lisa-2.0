@@ -20,6 +20,10 @@ const CarSchema = new mongoose.Schema({
       required: true,
     },
   }],
+  quantidadePassageiros: {
+    type: String,
+    required: true,
+  },
 }, {
   id: false,
   versionKey: false,
