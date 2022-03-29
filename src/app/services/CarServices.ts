@@ -10,8 +10,8 @@ import { ICarRepository } from '../interfaces/Car/ICarRepository';
 class CarService implements ICarService {
   private readonly carRepository: ICarRepository;
 
-  constructor(@Inject(CarRepository) projectRepository: ICarRepository) {
-    this.carRepository = projectRepository;
+  constructor(@Inject(CarRepository) carRepository: ICarRepository) {
+    this.carRepository = carRepository;
   }
 
   async create(project: Icar): Promise<Icar> {
