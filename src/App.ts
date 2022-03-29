@@ -1,19 +1,24 @@
-import express, { Express } from 'express';
+import Server, { Express } from 'express';
+import IndexRoutes from '../src/routes/index';
 import './infra/database/mongo/index.ts';
 
 class App {
-    readonly express: Express;
+  readonly server: Express;
 
-    constructor(){
-        this.express = express();
+  constructor() {
+    this.server = Server();
+    this.middlewares();
+    this.routes();
+  }
 
-        this.middlewares()
-    }
+  middlewares(): void {
+    this.server.use(Server.json());
+    this.server.use(Server.urlencoded({ extended: true }));
+  }
 
-    middlewares(): void {
-        this.express.use(express.json());
-        this.express.use(express.urlencoded({extended: true}));
-    }
+  routes(): void {
+    this.server.use('/api', IndexRoutes.routes);
+  }
 }
 
-export default new App().express;
+export default new App().server;
