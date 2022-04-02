@@ -10,7 +10,7 @@ export const logger = createLogger({
     new transports.File({
       maxsize: 5120000,
       maxFiles: 5,
-      filename: `${__dirname}path.join/../log/api.log`,
+      filename: `${__dirname}path.join/../log/lisa-api.log`,
     }),
     new transports.Console({
       level: 'debug',

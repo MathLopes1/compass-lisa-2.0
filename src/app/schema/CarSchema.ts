@@ -25,7 +25,6 @@ const CarSchema = new mongoose.Schema({
     required: true,
   },
 }, {
-  id: false,
   versionKey: false,
 });
 
