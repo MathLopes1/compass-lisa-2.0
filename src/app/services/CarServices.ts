@@ -24,6 +24,11 @@ class CarService implements ICarService {
     const result = await this.carRepository.find();
     return result;
   }
+
+  async findId(id: string): Promise<Icar> {
+    const result = await this.carRepository.findId(id);
+    return result;
+  }
 }
 
 export default CarService;
