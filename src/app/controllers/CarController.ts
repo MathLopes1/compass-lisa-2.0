@@ -35,6 +35,17 @@ class CarController {
       return res.status(400).json(error);
     }
   }
+
+  @Get('/:id')
+  async findId(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const result = await this.carService.findId(id);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
 }
 
 export default CarController;
