@@ -8,8 +8,13 @@ import { ICarRepository } from '../interfaces/Car/ICarRepository';
 @Injectable()
 class CarRepository implements ICarRepository {
   async create(car: Icar): Promise<Icar> {
-    const newCar = Car.create(car);
+    const newCar = await Car.create(car);
     return newCar;
+  }
+
+  async find(): Promise<Icar[]> {
+    const result = await Car.find();
+    return result;
   }
 }
 
