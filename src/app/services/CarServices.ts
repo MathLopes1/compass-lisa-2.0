@@ -29,6 +29,11 @@ class CarService implements ICarService {
     const result = await this.carRepository.findId(id);
     return result;
   }
+
+  async updated(id: string, payload: Icar): Promise<Icar> {
+    const result = await this.carRepository.updated(id, payload);
+    return result;
+  }
 }
 
 export default CarService;

@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
-import { Controller, Post, Get } from '@decorators/express';
+import {
+  Controller, Post, Get, Put,
+} from '@decorators/express';
 import { Inject } from '@decorators/di';
 
 import CarService from '../services/CarServices';
@@ -37,10 +39,23 @@ class CarController {
   }
 
   @Get('/:id')
-  async findId(req: Request, res: Response): Promise<Response> {
+  async findId(req: Request, res: Response): Promise<Response | Error> {
     try {
       const { id } = req.params;
       const result = await this.carService.findId(id);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  @Put('/:id')
+  async updated(req: Request, res: Response): Promise<Response | Error> {
+    try {
+      const { id } = req.params;
+      const payload = req.body;
+
+      const result = await this.carService.updated(id, payload);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json(error);
