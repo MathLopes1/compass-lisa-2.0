@@ -5,4 +5,5 @@ export interface ICarService {
   find: () => Promise<Icar[]>
   findId: (id: string) => Promise<Icar>
   updated: (id: string, payload: Icar) => Promise<Icar>
+  delete: (id: string) => Promise<void>
 }

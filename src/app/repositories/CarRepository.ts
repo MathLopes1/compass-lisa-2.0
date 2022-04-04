@@ -26,6 +26,10 @@ class CarRepository implements ICarRepository {
     const result = await Car.findByIdAndUpdate(id, payload);
     return result;
   }
+
+  async delete(id: string): Promise<void> {
+    await Car.findByIdAndDelete(id);
+  }
 }
 
 export default CarRepository;

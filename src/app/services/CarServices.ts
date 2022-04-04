@@ -34,6 +34,10 @@ class CarService implements ICarService {
     const result = await this.carRepository.updated(id, payload);
     return result;
   }
+
+  async delete(id: string): Promise<void> {
+    await this.carRepository.delete(id);
+  }
 }
 
 export default CarService;
