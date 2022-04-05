@@ -8,7 +8,9 @@ import CarService from '../services/CarServices';
 import { ICarService } from '../interfaces/Car/ICarService';
 import { Icar } from '../interfaces/Car/ICar';
 
-@Controller('/car')
+import CarValidationBody from '../validations/CarValidations/CarBody';
+
+@Controller('/car', [CarValidationBody])
 class CarController {
   private readonly carService: ICarService;
 
