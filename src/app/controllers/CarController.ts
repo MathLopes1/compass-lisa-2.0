@@ -9,6 +9,7 @@ import { ICarService } from '../interfaces/Car/ICarService';
 import { Icar } from '../interfaces/Car/ICar';
 
 import CarValidationBody from '../validations/CarValidations/CarBody';
+import CarValidationFind from '../validations/CarValidations/CarFind';
 
 @Controller('/car')
 class CarController {
@@ -30,7 +31,7 @@ class CarController {
     }
   }
 
-  @Get('/')
+  @Get('/', [CarValidationFind])
   async find(req: Request, res: Response): Promise<Response> {
     try {
       const result = await this.carService.find();
@@ -40,7 +41,7 @@ class CarController {
     }
   }
 
-  @Get('/:id')
+  @Get('/:id', [CarValidationFind])
   async findId(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
@@ -51,7 +52,7 @@ class CarController {
     }
   }
 
-  @Put('/:id')
+  @Put('/:id', [CarValidationBody])
   async updated(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
