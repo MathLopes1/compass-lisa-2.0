@@ -10,6 +10,7 @@ import { Icar } from '../interfaces/Car/ICar';
 
 import CarValidationBody from '../validations/CarValidations/CarBody';
 import CarValidationFind from '../validations/CarValidations/CarFind';
+import IdValidation from '../validations/IdValidation';
 
 @Controller('/car')
 class CarController {
@@ -41,7 +42,7 @@ class CarController {
     }
   }
 
-  @Get('/:id', [CarValidationFind])
+  @Get('/:id', [IdValidation, CarValidationFind])
   async findId(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
@@ -52,7 +53,7 @@ class CarController {
     }
   }
 
-  @Put('/:id', [CarValidationBody])
+  @Put('/:id', [IdValidation, CarValidationBody])
   async updated(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
@@ -65,7 +66,7 @@ class CarController {
     }
   }
 
-  @Delete('/:id')
+  @Delete('/:id', [IdValidation])
   async delete(req: Request, res: Response): Promise<object> {
     try {
       const { id } = req.params;
