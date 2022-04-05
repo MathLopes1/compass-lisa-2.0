@@ -10,7 +10,7 @@ import { Icar } from '../interfaces/Car/ICar';
 
 import CarValidationBody from '../validations/CarValidations/CarBody';
 
-@Controller('/car', [CarValidationBody])
+@Controller('/car')
 class CarController {
   private readonly carService: ICarService;
 
@@ -18,7 +18,7 @@ class CarController {
     this.carService = carService;
   }
 
-  @Post('/')
+  @Post('/', [CarValidationBody])
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const car: Icar = req.body;
