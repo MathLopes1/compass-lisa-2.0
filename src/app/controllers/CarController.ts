@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import {
-  Controller, Post, Get, Put,
+  Controller, Post, Get, Put, Delete,
 } from '@decorators/express';
 import { Inject } from '@decorators/di';
 
@@ -8,7 +8,9 @@ import CarService from '../services/CarServices';
 import { ICarService } from '../interfaces/Car/ICarService';
 import { Icar } from '../interfaces/Car/ICar';
 
-@Controller('/car')
+import CarValidationBody from '../validations/CarValidations/CarBody';
+
+@Controller('/car', [CarValidationBody])
 class CarController {
   private readonly carService: ICarService;
 
@@ -39,7 +41,7 @@ class CarController {
   }
 
   @Get('/:id')
-  async findId(req: Request, res: Response): Promise<Response | Error> {
+  async findId(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
       const result = await this.carService.findId(id);
@@ -50,13 +52,25 @@ class CarController {
   }
 
   @Put('/:id')
-  async updated(req: Request, res: Response): Promise<Response | Error> {
+  async updated(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
       const payload = req.body;
 
       const result = await this.carService.updated(id, payload);
       return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  }
+
+  @Delete('/:id')
+  async delete(req: Request, res: Response): Promise<object> {
+    try {
+      const { id } = req.params;
+      await this.carService.delete(id);
+
+      return res.status(204).end();
     } catch (error) {
       return res.status(400).json(error);
     }
