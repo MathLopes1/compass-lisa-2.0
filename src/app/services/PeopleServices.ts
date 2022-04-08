@@ -28,6 +28,11 @@ class PeopleService implements IPeopleServices {
     const result = this.peopleRepository.findId(id);
     return result;
   }
+
+  async updated(id: string, payload: IPeople): Promise<IPeople> {
+    const result = await this.peopleRepository.updated(id, payload);
+    return result;
+  }
 }
 
 export default PeopleService;

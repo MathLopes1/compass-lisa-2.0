@@ -21,6 +21,11 @@ class PeopleRepository implements IPeopleRepository {
     const result = await People.findById(id);
     return result;
   }
+
+  async updated(id: string, payload: IPeople): Promise<IPeople> {
+    const result = await People.findByIdAndUpdate(id, payload);
+    return result;
+  }
 }
 
 export default PeopleRepository;
