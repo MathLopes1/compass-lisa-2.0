@@ -16,7 +16,6 @@ class CarService implements ICarService {
 
   async create(project: Icar): Promise<Icar> {
     const newCar = await this.carRepository.create(project);
-
     return newCar;
   }
 

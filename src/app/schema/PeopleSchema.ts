@@ -24,6 +24,7 @@ const PeopleSchema = new mongoose.Schema({
   },
   habilitado: {
     type: String,
+    enum: ['true', 'false'],
     required: true,
   },
 }, {
