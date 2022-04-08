@@ -28,7 +28,10 @@ class CarController {
 
       return res.status(201).json(result);
     } catch (error) {
-      return res.status(400).json(error);
+      return res.status(400).json({
+        name: error.name,
+        description: error.message,
+      });
     }
   }
 
@@ -38,7 +41,10 @@ class CarController {
       const result = await this.carService.find();
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(400).json(error);
+      return res.status(400).json({
+        name: error.name,
+        description: error.message,
+      });
     }
   }
 
@@ -49,7 +55,10 @@ class CarController {
       const result = await this.carService.findId(id);
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(400).json(error);
+      return res.status(400).json({
+        name: error.name,
+        description: error.message,
+      });
     }
   }
 
@@ -62,7 +71,10 @@ class CarController {
       const result = await this.carService.updated(id, payload);
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(400).json(error);
+      return res.status(400).json({
+        name: error.name,
+        description: error.message,
+      });
     }
   }
 
@@ -74,7 +86,10 @@ class CarController {
 
       return res.status(204).end();
     } catch (error) {
-      return res.status(400).json(error);
+      return res.status(400).json({
+        name: error.name,
+        description: error.message,
+      });
     }
   }
 }
