@@ -14,9 +14,14 @@ class PeopleService implements IPeopleServices {
     this.peopleRepository = peopleRepository;
   }
 
-  async create(payload: IPeople) {
+  async create(payload: IPeople): Promise<IPeople> {
     const newPeople = this.peopleRepository.create(payload);
     return newPeople;
+  }
+
+  async find(): Promise<IPeople[]> {
+    const result = this.peopleRepository.find();
+    return result;
   }
 }
 

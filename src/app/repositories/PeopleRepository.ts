@@ -7,9 +7,14 @@ import { IPeopleRepository } from '../interfaces/People/IPeopleRepository';
 
 @Injectable()
 class PeopleRepository implements IPeopleRepository {
-  async create(payload: IPeople) {
+  async create(payload: IPeople): Promise<IPeople> {
     const newPeople = await People.create(payload);
     return newPeople;
+  }
+
+  async find(): Promise<IPeople[]> {
+    const result = await People.find();
+    return result;
   }
 }
 
