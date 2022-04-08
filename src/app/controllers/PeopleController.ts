@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
-import { Controller, Get, Post } from '@decorators/express';
+import {
+  Controller, Get, Post, Put,
+} from '@decorators/express';
 
 import { Inject } from '@decorators/di';
 
@@ -39,6 +41,33 @@ class PeopleController {
         name: error.name,
         description: error.message,
       });
+    }
+  }
+
+  @Get('/:id')
+  async findId(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const result = await this.peopleService.findId(id);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(200).json({
+        name: error.name,
+        description: error.message,
+      });
+    }
+  }
+
+  @Put('/:id')
+  async updated(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const payload = req.body;
+
+      const result = await this.peopleService.updated(id, payload);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
     }
   }
 }
