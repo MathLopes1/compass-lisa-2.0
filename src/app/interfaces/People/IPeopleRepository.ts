@@ -5,4 +5,5 @@ export interface IPeopleRepository {
     find: () => Promise<IPeople[]>
     findId: (id: String) => Promise<IPeople>
     updated: (id: string, payload: IPeople) => Promise<IPeople>
+    delete: (id: string) => Promise<void>
 }

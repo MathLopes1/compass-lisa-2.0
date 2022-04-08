@@ -26,6 +26,10 @@ class PeopleRepository implements IPeopleRepository {
     const result = await People.findByIdAndUpdate(id, payload);
     return result;
   }
+
+  async delete(id: string): Promise<void> {
+    await People.findByIdAndDelete(id);
+  }
 }
 
 export default PeopleRepository;
