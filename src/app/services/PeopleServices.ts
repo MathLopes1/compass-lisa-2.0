@@ -33,6 +33,10 @@ class PeopleService implements IPeopleServices {
     const result = await this.peopleRepository.updated(id, payload);
     return result;
   }
+
+  async delete(id: string): Promise<void> {
+    await this.peopleRepository.delete(id);
+  }
 }
 
 export default PeopleService;
