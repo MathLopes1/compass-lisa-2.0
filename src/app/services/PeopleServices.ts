@@ -23,6 +23,11 @@ class PeopleService implements IPeopleServices {
     const result = this.peopleRepository.find();
     return result;
   }
+
+  async findId(id: String): Promise<IPeople> {
+    const result = this.peopleRepository.findId(id);
+    return result;
+  }
 }
 
 export default PeopleService;

@@ -41,6 +41,20 @@ class PeopleController {
       });
     }
   }
+
+  @Get('/:id')
+  async findId(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const result = await this.peopleService.findId(id);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(200).json({
+        name: error.name,
+        description: error.message,
+      });
+    }
+  }
 }
 
 export default PeopleController;
