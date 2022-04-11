@@ -9,7 +9,7 @@ class Database {
   private async connect(): Promise< typeof Mongoose | void > {
     try {
       logger.info('connected to database');
-      const db = process.env.DATABASE_URL;
+      const db: string = process.env.DATABASE_URL;
       const connected = await Mongoose.connect(db);
       return connected;
     } catch (error) {
