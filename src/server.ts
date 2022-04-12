@@ -3,7 +3,12 @@ import 'dotenv/config';
 import App from './App';
 import { logger } from './app/utils/log/logger';
 
-const Port:string = process.env.PORT;
+const Server = async (): Promise<void> => {
+  const app = await App.Starting();
+  const Port:string = process.env.PORT;
 
-App.listen(Port, () => logger
-  .info(`online application at -> http://localhost:/${Port}`));
+  app.listen(Port, () => logger
+    .info(`online application at -> http://localhost:/${Port}`));
+};
+
+Server();

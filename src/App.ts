@@ -1,6 +1,6 @@
 import Server, { Express } from 'express';
 import IndexRoutes from '../src/routes/index';
-import './infra/database/mongo/index.ts';
+import Database from './infra/database/mongo/index';
 
 class App {
   readonly server: Express;
@@ -9,6 +9,13 @@ class App {
     this.server = Server();
     this.middlewares();
     this.routes();
+  }
+
+  static async Starting() {
+    const app: App = new App();
+    await Database.connect();
+
+    return app.server;
   }
 
   middlewares(): void {
@@ -21,4 +28,4 @@ class App {
   }
 }
 
-export default new App().server;
+export default App;
