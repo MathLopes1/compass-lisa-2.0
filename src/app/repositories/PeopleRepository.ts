@@ -8,22 +8,22 @@ import { IPeopleRepository } from '../interfaces/People/IPeopleRepository';
 @Injectable()
 class PeopleRepository implements IPeopleRepository {
   async create(payload: IPeople): Promise<IPeople> {
-    const newPeople = await People.create(payload);
+    const newPeople: IPeople = await People.create(payload);
     return newPeople;
   }
 
-  async find(): Promise<IPeople[]> {
-    const result = await People.find();
+  async find(): Promise<IPeople | IPeople[]> {
+    const result: IPeople | IPeople[] = await People.find();
     return result;
   }
 
   async findId(id: String): Promise<IPeople> {
-    const result = await People.findById(id);
+    const result: IPeople = await People.findById(id);
     return result;
   }
 
   async updated(id: string, payload: IPeople): Promise<IPeople> {
-    const result = await People.findByIdAndUpdate(id, payload);
+    const result: IPeople = await People.findByIdAndUpdate(id, payload);
     return result;
   }
 

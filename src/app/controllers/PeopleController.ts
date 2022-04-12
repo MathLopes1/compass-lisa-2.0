@@ -34,7 +34,7 @@ class PeopleController {
   @Get('/')
   async find(req: Request, res: Response): Promise<Response> {
     try {
-      const result = await this.peopleService.find();
+      const result: IPeople | IPeople[] = await this.peopleService.find();
       return res.status(200).json(result);
     } catch (error) {
       return res.status(200).json({
@@ -48,7 +48,7 @@ class PeopleController {
   async findId(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
-      const result = await this.peopleService.findId(id);
+      const result: IPeople = await this.peopleService.findId(id);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(200).json({
@@ -62,7 +62,7 @@ class PeopleController {
   async updated(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
-      const payload = req.body;
+      const payload: IPeople = req.body;
 
       const result = await this.peopleService.updated(id, payload);
       return res.status(200).json(result);

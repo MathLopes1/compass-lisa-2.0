@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { Icar } from '../interfaces/Car/ICar';
 
-const CarSchema = new mongoose.Schema({
+const CarSchema: mongoose.Schema = new mongoose.Schema({
   modelo: {
     type: String,
     required: true,

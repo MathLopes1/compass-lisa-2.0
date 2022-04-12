@@ -8,22 +8,22 @@ import { ICarRepository } from '../interfaces/Car/ICarRepository';
 @Injectable()
 class CarRepository implements ICarRepository {
   async create(car: Icar): Promise<Icar> {
-    const newCar = await Car.create(car);
+    const newCar: Icar = await Car.create(car);
     return newCar;
   }
 
-  async find(): Promise<Icar[]> {
-    const result = await Car.find();
+  async find(): Promise<Icar | Icar[]> {
+    const result: Icar | Icar[] = await Car.find();
     return result;
   }
 
   async findId(id: string): Promise<Icar> {
-    const result = await Car.findById(id);
+    const result: Icar = await Car.findById(id);
     return result;
   }
 
   async updated(id: string, payload: Icar): Promise<Icar> {
-    const result = await Car.findByIdAndUpdate(id, payload);
+    const result: Icar = await Car.findByIdAndUpdate(id, payload);
     return result;
   }
 

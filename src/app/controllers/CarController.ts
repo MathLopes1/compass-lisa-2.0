@@ -24,7 +24,7 @@ class CarController {
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const car: Icar = req.body;
-      const result = await this.carService.create(car);
+      const result: Icar = await this.carService.create(car);
 
       return res.status(201).json(result);
     } catch (error) {
@@ -38,7 +38,7 @@ class CarController {
   @Get('/', [CarValidationFind])
   async find(req: Request, res: Response): Promise<Response> {
     try {
-      const result = await this.carService.find();
+      const result: Icar | Icar[] = await this.carService.find();
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({
@@ -52,7 +52,7 @@ class CarController {
   async findId(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
-      const result = await this.carService.findId(id);
+      const result: Icar = await this.carService.findId(id);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({
@@ -66,7 +66,7 @@ class CarController {
   async updated(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
-      const payload = req.body;
+      const payload: Icar = req.body;
 
       const result = await this.carService.updated(id, payload);
       return res.status(200).json(result);
