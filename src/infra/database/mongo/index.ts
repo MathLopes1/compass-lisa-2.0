@@ -6,7 +6,7 @@ class Database {
     this.connect();
   }
 
-  private async connect(): Promise< typeof Mongoose | void > {
+  public async connect(): Promise< typeof Mongoose | void > {
     try {
       logger.info('connected to database');
       const db: string = process.env.DATABASE_URL;

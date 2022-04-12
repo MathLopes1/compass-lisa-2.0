@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { IPeople } from '../interfaces/People/IPeople';
+import { habilitado } from '../utils/Enum/enum';
 
 const PeopleSchema: mongoose.Schema = new mongoose.Schema({
   nome: {
@@ -24,7 +25,7 @@ const PeopleSchema: mongoose.Schema = new mongoose.Schema({
   },
   habilitado: {
     type: String,
-    enum: ['true', 'false'],
+    enum: habilitado,
     required: true,
   },
 }, {
