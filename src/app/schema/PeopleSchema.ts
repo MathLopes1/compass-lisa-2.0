@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { IPeople } from '../interfaces/People/IPeople';
 
-const PeopleSchema = new mongoose.Schema({
+const PeopleSchema: mongoose.Schema = new mongoose.Schema({
   nome: {
     type: String,
     required: true,

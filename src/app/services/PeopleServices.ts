@@ -15,22 +15,22 @@ class PeopleService implements IPeopleServices {
   }
 
   async create(payload: IPeople): Promise<IPeople> {
-    const newPeople = this.peopleRepository.create(payload);
+    const newPeople: IPeople = await this.peopleRepository.create(payload);
     return newPeople;
   }
 
-  async find(): Promise<IPeople[]> {
-    const result = this.peopleRepository.find();
+  async find(): Promise<IPeople| IPeople[]> {
+    const result: IPeople | IPeople[] = await this.peopleRepository.find();
     return result;
   }
 
   async findId(id: String): Promise<IPeople> {
-    const result = this.peopleRepository.findId(id);
+    const result: IPeople = await this.peopleRepository.findId(id);
     return result;
   }
 
   async updated(id: string, payload: IPeople): Promise<IPeople> {
-    const result = await this.peopleRepository.updated(id, payload);
+    const result: IPeople = await this.peopleRepository.updated(id, payload);
     return result;
   }
 
