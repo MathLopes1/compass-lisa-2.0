@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
+import bcrypt from 'bcrypt';
+
 import { IPeople } from '../interfaces/People/IPeople';
 import { habilitado } from '../utils/Enum/enum';
 
@@ -33,6 +35,13 @@ const PeopleSchema: mongoose.Schema = new mongoose.Schema({
 }, {
   id: false,
   versionKey: false,
+});
+
+PeopleSchema.pre('save', async function (next) {
+  const hash = await bcrypt.hash(this.senha, 10);
+  this.senha = hash;
+
+  next();
 });
 
 PeopleSchema.plugin(mongoosePaginate);
