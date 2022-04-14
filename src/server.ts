@@ -3,7 +3,7 @@ import 'dotenv/config';
 import App from './App';
 import { logger } from './app/utils/log/logger';
 
-const Server = async (): Promise<void> => {
+const Server: Function = async (): Promise<void> => {
   const app = await App.Starting();
   const Port:string = process.env.PORT;
 
