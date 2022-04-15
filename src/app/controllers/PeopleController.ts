@@ -9,6 +9,8 @@ import PeopleService from '../services/PeopleServices';
 import { IPeopleServices } from '../interfaces/People/IPeopleService';
 import { IPeople } from '../interfaces/People/IPeople';
 
+import PeopleValidationBody from '../validations/PeopleValidations/PeopleBody';
+
 @Controller('/people')
 class PeopleController {
   private readonly peopleService: IPeopleServices;
@@ -17,7 +19,7 @@ class PeopleController {
     this.peopleService = peopleService;
   }
 
-  @Post('/')
+  @Post('/', [PeopleValidationBody])
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const people: IPeople = req.body;
