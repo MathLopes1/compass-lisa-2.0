@@ -6,6 +6,8 @@ import { IPeople } from '../interfaces/People/IPeople';
 import { IPeopleServices } from '../interfaces/People/IPeopleService';
 import { IPeopleRepository } from '../interfaces/People/IPeopleRepository';
 
+import formatCPF from '../utils/Functions/FormatCpf';
+
 @Injectable()
 class PeopleService implements IPeopleServices {
   private readonly peopleRepository: IPeopleRepository;
@@ -15,7 +17,8 @@ class PeopleService implements IPeopleServices {
   }
 
   async create(payload: IPeople): Promise<IPeople> {
-    const newPeople: IPeople = await this.peopleRepository.create(payload);
+    const Data: IPeople = await this.peopleRepository.create(payload);
+    const newPeople: IPeople = formatCPF(Data);
     return newPeople;
   }
 
