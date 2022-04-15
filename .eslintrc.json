@@ -23,6 +23,8 @@
         "no-unused-vars": "off",
         "no-console": "off",
         "func-names": "off",
-        "no-underscore-dangle": "off"
+        "no-underscore-dangle": "off",
+        "eqeqeq": "off",
+        "no-plusplus": "off"
     }
 }
