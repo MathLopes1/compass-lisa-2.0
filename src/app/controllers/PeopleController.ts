@@ -60,7 +60,7 @@ class PeopleController {
     }
   }
 
-  @Put('/:id')
+  @Put('/:id', [PeopleValidationBody])
   async updated(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
