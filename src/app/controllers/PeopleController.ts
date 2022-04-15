@@ -10,6 +10,7 @@ import { IPeopleServices } from '../interfaces/People/IPeopleService';
 import { IPeople } from '../interfaces/People/IPeople';
 
 import PeopleValidationBody from '../validations/PeopleValidations/PeopleBody';
+import VadalidationId from '../validations/IdValidation';
 
 @Controller('/people')
 class PeopleController {
@@ -46,7 +47,7 @@ class PeopleController {
     }
   }
 
-  @Get('/:id')
+  @Get('/:id', [VadalidationId])
   async findId(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
@@ -60,7 +61,7 @@ class PeopleController {
     }
   }
 
-  @Put('/:id', [PeopleValidationBody])
+  @Put('/:id', [VadalidationId, PeopleValidationBody])
   async updated(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
@@ -76,7 +77,7 @@ class PeopleController {
     }
   }
 
-  @Delete('/:id')
+  @Delete('/:id', [VadalidationId])
   async delete(req: Request, res: Response): Promise<object> {
     try {
       const { id } = req.params;
