@@ -10,6 +10,7 @@ import { IPeopleServices } from '../interfaces/People/IPeopleService';
 import { IPeople } from '../interfaces/People/IPeople';
 
 import PeopleValidationBody from '../validations/PeopleValidations/PeopleBody';
+import PeopleValidationFind from '../validations/PeopleValidations/PeopleFind';
 import VadalidationId from '../validations/IdValidation';
 
 @Controller('/people')
@@ -34,7 +35,7 @@ class PeopleController {
     }
   }
 
-  @Get('/')
+  @Get('/', [PeopleValidationFind])
   async find(req: Request, res: Response): Promise<Response> {
     try {
       const result: IPeople | IPeople[] = await this.peopleService.find();
@@ -47,7 +48,7 @@ class PeopleController {
     }
   }
 
-  @Get('/:id', [VadalidationId])
+  @Get('/:id', [VadalidationId, PeopleValidationFind])
   async findId(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
