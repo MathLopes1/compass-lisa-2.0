@@ -7,8 +7,14 @@ import { IAuthRepository } from '../interfaces/Auth/IAuthRepository';
 
 @Injectable()
 class AuthRepository implements IAuthRepository {
-  async authenticate(email) {
-    const result: IPeople = await People.findOne({ email });
+  private readonly peopleRepository;
+
+  constructor() {
+    this.peopleRepository = People;
+  }
+
+  async authenticate(email: String) {
+    const result: IPeople = await this.peopleRepository.findOne({ email });
     return result;
   }
 }
