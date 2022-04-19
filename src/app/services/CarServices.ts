@@ -19,8 +19,8 @@ class CarService implements ICarService {
     return newCar;
   }
 
-  async find(): Promise<Icar | Icar[]> {
-    const result: Icar | Icar[] = await this.carRepository.find();
+  async find(query): Promise<Icar | Icar[]> {
+    const result: Icar | Icar[] = await this.carRepository.find(query);
     return result;
   }
 

@@ -1,9 +1,10 @@
-import { Inject, Injectable } from '@decorators/di';
+import { Injectable } from '@decorators/di';
 
 import Car from '../schema/CarSchema';
 
 import { Icar } from '../interfaces/Car/ICar';
 import { ICarRepository } from '../interfaces/Car/ICarRepository';
+import { options } from '../utils/Pagination/CarPagination';
 
 @Injectable()
 class CarRepository implements ICarRepository {
@@ -18,8 +19,8 @@ class CarRepository implements ICarRepository {
     return newCar;
   }
 
-  async find(): Promise<Icar | Icar[]> {
-    const result: Icar | Icar[] = await this.carRepository.find();
+  async find(query): Promise<Icar | Icar[]> {
+    const result: Icar = await this.carRepository.paginate(query, options, {});
     return result;
   }
 

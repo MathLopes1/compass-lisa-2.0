@@ -37,8 +37,9 @@ class PeopleController {
 
   @Get('/', [PeopleValidationFind])
   async find(req: Request, res: Response): Promise<Response> {
+    const search = req.query;
     try {
-      const result: IPeople | IPeople[] = await this.peopleService.find();
+      const result: IPeople | IPeople[] = await this.peopleService.find(search);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(200).json({
