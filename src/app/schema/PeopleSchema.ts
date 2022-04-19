@@ -28,6 +28,7 @@ const PeopleSchema: mongoose.Schema = new mongoose.Schema({
   senha: {
     type: String,
     required: true,
+    minLength: 6,
   },
   habilitado: {
     type: String,
