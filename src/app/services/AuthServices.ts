@@ -18,17 +18,14 @@ class AuthService implements IAuthService {
   }
 
   async authenticate(payload: IPeople): Promise<IAuth> {
-    const { email } = payload;
+    const { senha } = payload;
     const people: IPeople = await this.authRepository.authenticate(payload.email);
     if (!people) throw new Error('email does not exist');
-    let date: IAuth;
-    if (!(await bcrypt.compare(email, people.email))) {
-      const { email, habilitado } = people;
-      const token: String = Token({ _id: people._id });
-      const result: IAuth = { email, habilitado, token };
-      date = result;
-    }
-    return date;
+    if (!(await bcrypt.compare(senha, people.senha)));
+    const token: String = Token({ _id: people._id });
+    const { email, habilitado } = people;
+    const result: IAuth = { email, habilitado, token };
+    return result;
   }
 }
 export default AuthService;
