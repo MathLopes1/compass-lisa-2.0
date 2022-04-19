@@ -4,6 +4,7 @@ import People from '../schema/PeopleSchema';
 
 import { IPeople } from '../interfaces/People/IPeople';
 import { IPeopleRepository } from '../interfaces/People/IPeopleRepository';
+import { options } from '../utils/Pagination/PeoplePagination';
 
 @Injectable()
 class PeopleRepository implements IPeopleRepository {
@@ -18,8 +19,8 @@ class PeopleRepository implements IPeopleRepository {
     return newPeople;
   }
 
-  async find(): Promise<IPeople | IPeople[]> {
-    const result: IPeople | IPeople[] = await this.peopleRepository.find();
+  async find(query): Promise<IPeople | IPeople[]> {
+    const result: IPeople = await this.peopleRepository.paginate(query, options, {});
     return result;
   }
 

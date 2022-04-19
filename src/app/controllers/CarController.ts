@@ -37,8 +37,9 @@ class CarController {
 
   @Get('/', [CarValidationFind])
   async find(req: Request, res: Response): Promise<Response> {
+    const search = req.query;
     try {
-      const result: Icar | Icar[] = await this.carService.find();
+      const result: Icar | Icar[] = await this.carService.find(search);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({

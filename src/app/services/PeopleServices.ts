@@ -22,8 +22,8 @@ class PeopleService implements IPeopleServices {
     return newPeople;
   }
 
-  async find(): Promise<IPeople| IPeople[]> {
-    const result: IPeople | IPeople[] = await this.peopleRepository.find();
+  async find(query): Promise<IPeople| IPeople[]> {
+    const result: IPeople | IPeople[] = await this.peopleRepository.find(query);
     return result;
   }
 
