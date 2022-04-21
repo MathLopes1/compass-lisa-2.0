@@ -20,8 +20,12 @@ class AuthService implements IAuthService {
   async authenticate(payload: IPeople): Promise<IAuth> {
     const { senha } = payload;
     const people: IPeople = await this.authRepository.authenticate(payload.email);
-    if (!people) throw new Error('email does not exist');
-    if (!(await bcrypt.compare(senha, people.senha)));
+    if (!people) {
+      throw new Error('email does not exist');
+    }
+    if (!(await bcrypt.compare(senha, people.senha))) {
+      throw new Error('Invalid password, enter a valid one');
+    }
     const token: String = Token({ _id: people._id });
     const { email, habilitado } = people;
     const result: IAuth = { email, habilitado, token };
