@@ -23,9 +23,11 @@ class AuthController {
       const auth: IAuth = await this.authService.authenticate(data);
       return res.status(201).json(auth);
     } catch (error) {
-      return res.status(400).json({
-        name: error.name,
-        description: error.message,
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
       });
     }
   }
