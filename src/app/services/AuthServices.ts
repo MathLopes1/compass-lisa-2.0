@@ -8,6 +8,7 @@ import { IAuth } from '../interfaces/Auth/IAuth';
 import { IPeople } from '../interfaces/People/IPeople';
 import { IAuthRepository } from '../interfaces/Auth/IAuthRepository';
 import { IAuthService } from '../interfaces/Auth/IAuthService';
+import Unauthorized from '../errors/ErrorsHttp/Unauthorized';
 
 @Injectable()
 class AuthService implements IAuthService {
@@ -21,10 +22,10 @@ class AuthService implements IAuthService {
     const { senha } = payload;
     const people: IPeople = await this.authRepository.authenticate(payload.email);
     if (!people) {
-      throw new Error('email does not exist');
+      throw new Unauthorized(`invalid email -> ${payload.email}`);
     }
     if (!(await bcrypt.compare(senha, people.senha))) {
-      throw new Error('Invalid password, enter a valid one');
+      throw new Unauthorized('Invalid password, enter a valid one');
     }
     const token: String = Token({ _id: people._id });
     const { email, habilitado } = people;
