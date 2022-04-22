@@ -6,7 +6,6 @@ import { Middleware } from '@decorators/express';
 import { IPeople } from '../../interfaces/People/IPeople';
 
 import { habilitado } from '../../utils/Enum/enum';
-import IsValidCpf from '../../utils/Functions/Validations/IsCpfValid';
 
 const Joi = JOI.extend(JoiDate) as typeof JOI;
 

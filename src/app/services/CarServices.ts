@@ -43,6 +43,12 @@ class CarService implements ICarService {
     if (result == null) throw new NotFound(id);
     return result;
   }
+
+  async updatedAccessory(id: string, accessoryId: string, payload: Icar): Promise<Icar> {
+    const result: Icar = await this.carRepository.updatedAccessory(id, accessoryId, payload);
+    if (result == null) throw new NotFound(id);
+    return result;
+  }
 }
 
 export default CarService;
