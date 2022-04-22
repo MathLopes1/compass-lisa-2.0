@@ -8,6 +8,9 @@ import { IPeopleRepository } from '../interfaces/People/IPeopleRepository';
 
 import formatCPF from '../utils/Functions/FormatCpf';
 
+import NotFound from '../errors/ErrorsHttp/NotFound';
+import IsConflit from '../utils/Functions/Validations/IsConflict';
+
 @Injectable()
 class PeopleService implements IPeopleServices {
   private readonly peopleRepository: IPeopleRepository;
@@ -17,6 +20,11 @@ class PeopleService implements IPeopleServices {
   }
 
   async create(payload: IPeople): Promise<IPeople> {
+    await IsConflit.isMajority(payload.data_nascimento);
+    await IsConflit.conflictCpf(payload.cpf);
+    await IsConflit.validCpf(payload.cpf);
+    await IsConflit.conflictEmail(payload.email);
+
     const Data: IPeople = await this.peopleRepository.create(payload);
     const newPeople: IPeople = formatCPF(Data);
     return newPeople;
@@ -29,16 +37,20 @@ class PeopleService implements IPeopleServices {
 
   async findId(id: String): Promise<IPeople> {
     const result: IPeople = await this.peopleRepository.findId(id);
+    if (result == null) throw new NotFound(id);
     return result;
   }
 
   async updated(id: string, payload: IPeople): Promise<IPeople> {
     const result: IPeople = await this.peopleRepository.updated(id, payload);
+    if (result == null) throw new NotFound(id);
     return result;
   }
 
   async delete(id: string): Promise<void> {
-    await this.peopleRepository.delete(id);
+    const result: void = await this.peopleRepository.delete(id);
+    if (result == null) throw new NotFound(id);
+    return result;
   }
 }
 

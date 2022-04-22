@@ -20,8 +20,10 @@ class VadalidationId implements Middleware {
       return next();
     } catch (error) {
       return res.status(400).json({
-        name: error.name,
-        description: error.message,
+        details: error.details.map((detail) => ({
+          name: detail.path[0],
+          description: detail.message,
+        })),
       });
     }
   }

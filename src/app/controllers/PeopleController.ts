@@ -28,9 +28,11 @@ class PeopleController {
       const result = await this.peopleService.create(people);
       return res.status(201).json(result);
     } catch (error) {
-      return res.status(400).json({
-        name: error.name,
-        description: error.message,
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
       });
     }
   }
@@ -42,9 +44,11 @@ class PeopleController {
       const result: IPeople | IPeople[] = await this.peopleService.find(search);
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(200).json({
-        name: error.name,
-        description: error.message,
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
       });
     }
   }
@@ -56,9 +60,11 @@ class PeopleController {
       const result: IPeople = await this.peopleService.findId(id);
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(200).json({
-        name: error.name,
-        description: error.message,
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
       });
     }
   }
@@ -72,9 +78,11 @@ class PeopleController {
       const result = await this.peopleService.updated(id, payload);
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(400).json({
-        name: error.name,
-        description: error.message,
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
       });
     }
   }
@@ -86,9 +94,11 @@ class PeopleController {
       await this.peopleService.delete(id);
       return res.status(204).end();
     } catch (error) {
-      return res.status(400).json({
-        name: error.name,
-        description: error.message,
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
       });
     }
   }
