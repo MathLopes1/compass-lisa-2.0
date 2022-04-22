@@ -9,8 +9,8 @@ class App {
   constructor() {
     this.server = Server();
     this.middlewares();
-    this.errorHandler();
     this.routes();
+    this.errorHandler();
   }
 
   static async Starting() {
