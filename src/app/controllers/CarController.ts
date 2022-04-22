@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import {
-  Controller, Post, Get, Put, Delete,
+  Controller, Post, Get, Put, Delete, Patch,
 } from '@decorators/express';
 import { Inject } from '@decorators/di';
 
@@ -94,6 +94,24 @@ class CarController {
       await this.carService.delete(id);
 
       return res.status(204).end();
+    } catch (error) {
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
+
+  @Patch('/:id/acessorios/:accessoryId')
+  async updateAccessory(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id, accessoryId } = req.params;
+      const payload = req.body;
+      const result = await this.carService.updatedAccessory(id, accessoryId, payload);
+
+      return res.status(200).json(result);
     } catch (error) {
       return res.status(error.statusCode).json({
         details: {
