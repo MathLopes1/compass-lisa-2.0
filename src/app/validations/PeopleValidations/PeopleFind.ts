@@ -6,7 +6,7 @@ import { Middleware } from '@decorators/express';
 import { IPeople } from '../../interfaces/People/IPeople';
 
 import { habilitado } from '../../utils/Enum/enum';
-import IsValidCpf from '../../utils/Validations/IsCpfValid';
+import IsValidCpf from '../../utils/Functions/Validations/IsCpfValid';
 
 const Joi = JOI.extend(JoiDate) as typeof JOI;
 
@@ -18,15 +18,8 @@ class validationFind implements Middleware {
         cpf: Joi.string()
           .min(11)
           .max(11)
-          .trim()
-          .custom((value, helper) => {
-            const message = helper.message({ custom: '"CPF" must be valid' });
-            if (!IsValidCpf(value)) {
-              return message;
-            }
-            return true;
-          }),
-        data_nascimento: Joi.date().format('DD/MM/YYYY').less('2004-01-01').max('now'),
+          .trim(),
+        data_nascimento: Joi.date().format('DD/MM/YYYY'),
         email: Joi.string()
           .trim()
           .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'br'] } }),
@@ -41,8 +34,10 @@ class validationFind implements Middleware {
       return next();
     } catch (error) {
       return res.status(400).json({
-        name: error.name,
-        description: error.message,
+        details: error.details.map((detail) => ({
+          name: detail.path[0],
+          description: detail.message,
+        })),
       });
     }
   }

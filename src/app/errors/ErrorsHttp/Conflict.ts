@@ -9,7 +9,7 @@ class Conflit extends HttpError {
     super(409, message);
 
     this.statusCode = 409;
-    this.name = 'Conflit';
+    this.name = 'Conflict';
   }
 }
 
