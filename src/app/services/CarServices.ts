@@ -6,6 +6,8 @@ import { Icar } from '../interfaces/Car/ICar';
 import { ICarService } from '../interfaces/Car/ICarService';
 import { ICarRepository } from '../interfaces/Car/ICarRepository';
 
+import NotFound from '../errors/ErrorsHttp/NotFound';
+
 @Injectable()
 class CarService implements ICarService {
   private readonly carRepository: ICarRepository;
@@ -26,16 +28,20 @@ class CarService implements ICarService {
 
   async findId(id: string): Promise<Icar> {
     const result: Icar = await this.carRepository.findId(id);
+    if (result == null) throw new NotFound(id);
     return result;
   }
 
   async updated(id: string, payload: Icar): Promise<Icar> {
     const result: Icar = await this.carRepository.updated(id, payload);
+    if (result == null) throw new NotFound(id);
     return result;
   }
 
   async delete(id: string): Promise<void> {
-    await this.carRepository.delete(id);
+    const result: void = await this.carRepository.delete(id);
+    if (result == null) throw new NotFound(id);
+    return result;
   }
 }
 
