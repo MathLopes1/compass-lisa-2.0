@@ -20,12 +20,12 @@ class App {
     return app.server;
   }
 
-  middlewares(): void {
+  private middlewares(): void {
     this.server.use(Server.json());
     this.server.use(Server.urlencoded({ extended: true }));
   }
 
-  routes(): void {
+  private routes(): void {
     this.server.use('/api', IndexRoutes.routes());
   }
 
