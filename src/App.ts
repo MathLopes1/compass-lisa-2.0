@@ -1,6 +1,7 @@
 import Server, { Express } from 'express';
 import IndexRoutes from '../src/routes/index';
 import Database from './infra/database/mongo/index';
+import ErrorHandle from './app/middlewares/ErrorHandle';
 
 class App {
   readonly server: Express;
@@ -8,6 +9,7 @@ class App {
   constructor() {
     this.server = Server();
     this.middlewares();
+    this.errorHandler();
     this.routes();
   }
 
@@ -25,6 +27,10 @@ class App {
 
   routes(): void {
     this.server.use('/api', IndexRoutes.routes());
+  }
+
+  private errorHandler(): void {
+    this.server.use(ErrorHandle);
   }
 }
 
