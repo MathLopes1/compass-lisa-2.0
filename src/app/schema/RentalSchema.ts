@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
-import { IRental } from '../interfaces/Rental/Irental';
+import { IRental } from '../interfaces/Rental/IRental';
 
 const RentalSchema: mongoose.Schema = new mongoose.Schema({
   nome: {
