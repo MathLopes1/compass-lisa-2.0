@@ -8,34 +8,34 @@ import { options } from '../utils/Pagination/PeoplePagination';
 
 @Injectable()
 class PeopleRepository implements IPeopleRepository {
-  private readonly peopleRepository;
+  private readonly peopleSchema;
 
   constructor() {
-    this.peopleRepository = People;
+    this.peopleSchema = People;
   }
 
   async create(payload: IPeople): Promise<IPeople> {
-    const newPeople: IPeople = await this.peopleRepository.create(payload);
+    const newPeople: IPeople = await this.peopleSchema.create(payload);
     return newPeople;
   }
 
   async find(query): Promise<IPeople | IPeople[]> {
-    const result: IPeople = await this.peopleRepository.paginate(query, options, {});
+    const result: IPeople = await this.peopleSchema.paginate(query, options, {});
     return result;
   }
 
   async findId(id: String): Promise<IPeople> {
-    const result: IPeople = await this.peopleRepository.findById(id);
+    const result: IPeople = await this.peopleSchema.findById(id);
     return result;
   }
 
   async updated(id: string, payload: IPeople): Promise<IPeople> {
-    const result: IPeople = await this.peopleRepository.findByIdAndUpdate(id, payload);
+    const result: IPeople = await this.peopleSchema.findByIdAndUpdate(id, payload);
     return result;
   }
 
   async delete(id: string): Promise<void> {
-    await this.peopleRepository.findByIdAndDelete(id);
+    await this.peopleSchema.findByIdAndDelete(id);
   }
 }
 
