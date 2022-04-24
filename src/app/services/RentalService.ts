@@ -51,6 +51,12 @@ class RentalService implements IRentalService {
     if (result == null) throw new NotFound(id);
     return result;
   }
+
+  async delete(id: string): Promise<void> {
+    const result: void = await this.rentalRepository.delete(id);
+    if (result == null) throw new NotFound(id);
+    return result;
+  }
 }
 
 export default RentalService;
