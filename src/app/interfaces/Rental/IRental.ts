@@ -16,3 +16,14 @@ export interface IRental {
     }
   ]
 }
+
+export interface IAdress {
+  isFilial: boolean
+  cep: string
+  logradouro: string
+  bairro: string
+  uf: string
+  localidade: string
+  number: string
+  complemento?: string
+}
