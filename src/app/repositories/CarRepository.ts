@@ -8,38 +8,38 @@ import { options } from '../utils/Pagination/CarPagination';
 
 @Injectable()
 class CarRepository implements ICarRepository {
-  private readonly carRepository;
+  private readonly carSchema;
 
   constructor() {
-    this.carRepository = Car;
+    this.carSchema = Car;
   }
 
   async create(car: Icar): Promise<Icar> {
-    const newCar: Icar = await this.carRepository.create(car);
+    const newCar: Icar = await this.carSchema.create(car);
     return newCar;
   }
 
   async find(query): Promise<Icar | Icar[]> {
-    const result: Icar = await this.carRepository.paginate(query, options, {});
+    const result: Icar = await this.carSchema.paginate(query, options, {});
     return result;
   }
 
   async findId(id: string): Promise<Icar> {
-    const result: Icar = await this.carRepository.findById(id);
+    const result: Icar = await this.carSchema.findById(id);
     return result;
   }
 
   async updated(id: string, payload: Icar): Promise<Icar> {
-    const result: Icar = await this.carRepository.findByIdAndUpdate(id, payload);
+    const result: Icar = await this.carSchema.findByIdAndUpdate(id, payload);
     return result;
   }
 
   async delete(id: string): Promise<void> {
-    await this.carRepository.findByIdAndDelete(id);
+    await this.carSchema.findByIdAndDelete(id);
   }
 
   async updatedAccessory(id: string, accessoryId: string, payload): Promise<Icar> {
-    const updatedAcessory: Icar = await this.carRepository.findByIdAndUpdate(
+    const updatedAcessory: Icar = await this.carSchema.findByIdAndUpdate(
       id,
       { $set: { 'acessorios.$[outer].descricao': payload.descricao } },
       { arrayFilters: [{ 'outer._id': accessoryId }] },
