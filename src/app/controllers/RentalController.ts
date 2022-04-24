@@ -46,6 +46,22 @@ class RentalController {
       });
     }
   }
+
+  @Get('/:id')
+  async findId(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const result: IRental = await this.rentalService.findId(id);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
 }
 
 export default RentalController;

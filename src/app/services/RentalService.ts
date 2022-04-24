@@ -6,6 +6,7 @@ import { IAdress, IRental } from '../interfaces/Rental/IRental';
 import { IRentalService } from '../interfaces/Rental/IRentalService';
 import { IRentalRepository } from '../interfaces/Rental/IRentalRepository';
 import ViaCep from '../utils/Functions/viaCep';
+import NotFound from '../errors/ErrorsHttp/NotFound';
 
 @Injectable()
 class RentalService implements IRentalService {
@@ -36,6 +37,12 @@ class RentalService implements IRentalService {
 
   async find(query): Promise<IRental| IRental[]> {
     const result: IRental | IRental[] = await this.rentalRepository.find(query);
+    return result;
+  }
+
+  async findId(id: string): Promise<IRental> {
+    const result: IRental = await this.rentalRepository.findId(id);
+    if (result == null) throw new NotFound(id);
     return result;
   }
 }
