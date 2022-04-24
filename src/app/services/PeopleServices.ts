@@ -6,7 +6,7 @@ import { IPeople } from '../interfaces/People/IPeople';
 import { IPeopleServices } from '../interfaces/People/IPeopleService';
 import { IPeopleRepository } from '../interfaces/People/IPeopleRepository';
 
-import formatCPF from '../utils/Functions/FormatCpf';
+import FormatForCpf from '../utils/Functions/FormatCpf';
 
 import NotFound from '../errors/ErrorsHttp/NotFound';
 import IsConflict from '../utils/Functions/Validations/IsConflict';
@@ -26,7 +26,7 @@ class PeopleService implements IPeopleServices {
     await IsConflict.conflictEmail(payload.email);
 
     const Data: IPeople = await this.peopleRepository.create(payload);
-    const newPeople: IPeople = formatCPF(Data);
+    const newPeople: IPeople = FormatForCpf(Data);
     return newPeople;
   }
 
