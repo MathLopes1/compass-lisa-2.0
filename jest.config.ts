@@ -6,9 +6,10 @@
 export default {
 
   collectCoverage: true,
-
+  coverageProvider: 'v8',
   coverageDirectory: 'coverage',
-
+  testEnvironment: 'node',
+  preset: 'ts-jest',
   testMatch: [
     '**/__tests__/*.spec.ts',
   ],
