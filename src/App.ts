@@ -1,4 +1,5 @@
 import Server, { Express } from 'express';
+import cors from 'cors';
 import IndexRoutes from '../src/routes/index';
 import Database from './infra/database/mongo/index';
 import ErrorHandle from './app/middlewares/ErrorHandle';
@@ -21,6 +22,7 @@ class App {
   }
 
   private middlewares(): void {
+    this.server.use(cors());
     this.server.use(Server.json());
     this.server.use(Server.urlencoded({ extended: true }));
   }
