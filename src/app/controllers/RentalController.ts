@@ -87,7 +87,7 @@ class RentalController {
     }
   }
 
-  @Delete('/:id')
+  @Delete('/:id', [ValidationId])
   async delete(req: Request, res: Response): Promise<object> {
     try {
       const { id } = req.params;
