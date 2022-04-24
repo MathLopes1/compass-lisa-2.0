@@ -15,7 +15,7 @@
     },
     "servers": [
       {
-        "url": "https://compass-lisa-2.herokuapp.com/",
+        "url": "https://compass-lisa-2.herokuapp.com",
         "description": "Heroku"
       },
       {
@@ -539,7 +539,7 @@
                     },
                     "cpf": {
                       "type": "string",
-                      "example": 13384049462
+                      "example": 92901340032
                     },
                     "data_nascimento": {
                       "type": "string",
