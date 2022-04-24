@@ -26,6 +26,8 @@
         "no-underscore-dangle": "off",
         "eqeqeq": "off",
         "no-plusplus": "off",
-        "no-await-in-loop":"off"
+        "no-await-in-loop":"off",
+        "no-param-reassign":"off",
+        "no-useless-escape":"off"
     }
 }

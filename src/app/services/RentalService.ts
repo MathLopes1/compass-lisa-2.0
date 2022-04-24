@@ -8,6 +8,7 @@ import { IRentalRepository } from '../interfaces/Rental/IRentalRepository';
 import ViaCep from '../utils/Functions/viaCep';
 import NotFound from '../errors/ErrorsHttp/NotFound';
 import IsConflict from '../utils/Functions/Validations/IsConflict';
+import FormatForCnpj from '../utils/Functions/FormatCnpj';
 
 @Injectable()
 class RentalService implements IRentalService {
@@ -36,7 +37,8 @@ class RentalService implements IRentalService {
       result.localidade = localidade;
       result.uf = uf;
     }
-    const newRental: IRental = await this.rentalRepository.create(payload);
+    const data: IRental = await this.rentalRepository.create(payload);
+    const newRental: IRental = FormatForCnpj(data);
     return newRental;
   }
 
