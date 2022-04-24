@@ -9,7 +9,7 @@ import { IPeopleRepository } from '../interfaces/People/IPeopleRepository';
 import formatCPF from '../utils/Functions/FormatCpf';
 
 import NotFound from '../errors/ErrorsHttp/NotFound';
-import IsConflit from '../utils/Functions/Validations/IsConflict';
+import IsConflict from '../utils/Functions/Validations/IsConflict';
 
 @Injectable()
 class PeopleService implements IPeopleServices {
@@ -20,10 +20,10 @@ class PeopleService implements IPeopleServices {
   }
 
   async create(payload: IPeople): Promise<IPeople> {
-    await IsConflit.isMajority(payload.data_nascimento);
-    await IsConflit.conflictCpf(payload.cpf);
-    await IsConflit.validCpf(payload.cpf);
-    await IsConflit.conflictEmail(payload.email);
+    await IsConflict.isMajority(payload.data_nascimento);
+    await IsConflict.conflictCpf(payload.cpf);
+    await IsConflict.validCpf(payload.cpf);
+    await IsConflict.conflictEmail(payload.email);
 
     const Data: IPeople = await this.peopleRepository.create(payload);
     const newPeople: IPeople = formatCPF(Data);

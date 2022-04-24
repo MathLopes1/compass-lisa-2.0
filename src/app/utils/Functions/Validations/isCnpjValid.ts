@@ -1,4 +1,4 @@
-export function validateCnpj(cnpj: string | undefined): boolean {
+function validateCnpj(cnpj: string | undefined): boolean {
   if (!cnpj) return true;
   const newCnpj = cnpj.replace(/[^\d]+/g, '');
   if (newCnpj.length !== 14) return false;
@@ -21,3 +21,5 @@ export function validateCnpj(cnpj: string | undefined): boolean {
   if (secondDigit !== parseInt(newCnpj.charAt(13), 10)) return false;
   return true;
 }
+
+export default validateCnpj;
