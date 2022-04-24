@@ -8,9 +8,9 @@ info:
     email: iamatheuslopes@gmail.com
 externalDocs:
   description: Documentação
-  url: https://github.com/MathLopes1/api-compasso-lisa.git
+  url: https://github.com/MathLopes1/compass-lisa-2.0.git
 servers:
-- url: https://math-compass-lisa.herokuapp.com/api/v1
+- url: 
   description: Heroku server
 - url: http://localhost:3000/api/v1
   description: API COMPASSO LISA
