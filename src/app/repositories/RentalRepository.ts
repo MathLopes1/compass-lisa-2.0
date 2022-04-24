@@ -4,6 +4,7 @@ import Rental from '../schema/RentalSchema';
 
 import { IRental } from '../interfaces/Rental/IRental';
 import { IRentalRepository } from '../interfaces/Rental/IRentalRepository';
+import { options } from '../utils/Pagination/RentalPagination';
 
 @Injectable()
 class RentalRepository implements IRentalRepository {
@@ -16,6 +17,11 @@ class RentalRepository implements IRentalRepository {
   async create(payload: IRental): Promise<IRental> {
     const newRental: IRental = await this.rentalSchema.create(payload);
     return newRental;
+  }
+
+  async find(query): Promise<IRental | IRental[]> {
+    const result: IRental = await this.rentalSchema.paginate(query, options, {});
+    return result;
   }
 }
 

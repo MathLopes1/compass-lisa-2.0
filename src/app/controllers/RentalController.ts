@@ -30,6 +30,22 @@ class RentalController {
       });
     }
   }
+
+  @Get('/')
+  async find(req: Request, res: Response): Promise<Response> {
+    const search = req.query;
+    try {
+      const result: IRental | IRental[] = await this.rentalService.find(search);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
 }
 
 export default RentalController;

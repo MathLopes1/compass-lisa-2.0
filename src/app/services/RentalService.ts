@@ -33,6 +33,11 @@ class RentalService implements IRentalService {
     const newRental: IRental = await this.rentalRepository.create(payload);
     return newRental;
   }
+
+  async find(query): Promise<IRental| IRental[]> {
+    const result: IRental | IRental[] = await this.rentalRepository.find(query);
+    return result;
+  }
 }
 
 export default RentalService;
