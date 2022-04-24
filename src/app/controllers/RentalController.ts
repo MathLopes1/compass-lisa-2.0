@@ -9,6 +9,8 @@ import RentalService from '../services/RentalService';
 import { IRental } from '../interfaces/Rental/IRental';
 import { IRentalService } from '../interfaces/Rental/IRentalService';
 
+import RentalValidationBody from '../validations/RentalValidations/RentalBody';
+
 @Controller('/rental')
 class RentalController {
   private readonly rentalService: IRentalService;
@@ -17,7 +19,7 @@ class RentalController {
     this.rentalService = rentalService;
   }
 
-  @Post('/')
+  @Post('/', [RentalValidationBody])
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const rental: IRental = req.body;
