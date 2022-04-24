@@ -11,6 +11,7 @@ import { Icar } from '../interfaces/Car/ICar';
 import CarValidationBody from '../validations/CarValidations/CarBody';
 import CarValidationFind from '../validations/CarValidations/CarFind';
 import IdValidation from '../validations/IdValidation';
+import ValidationPatchCar from '../validations/CarValidations/CarPatch';
 
 @Controller('/car')
 class CarController {
@@ -104,7 +105,7 @@ class CarController {
     }
   }
 
-  @Patch('/:id/acessorios/:accessoryId')
+  @Patch('/:id/acessorios/:accessoryId', [ValidationPatchCar])
   async updateAccessory(req: Request, res: Response): Promise<Response> {
     try {
       const { id, accessoryId } = req.params;
