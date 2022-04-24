@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.1",
     "info": {
-      "title": "API Compasso Lisa",
-      "description": "Empresa Compasso lisa - Aluguel de carros luxuosos e semi luxuosos.",
+      "title": "API Compass Lisa 2.0",
+      "description": "Empresa Compass lisa - Aluguel de carros luxuosos e semi luxuosos.",
       "version": "1.0.0",
       "contact": {
         "name": "Matheus Lopes da Silva",
@@ -15,7 +15,7 @@
     },
     "servers": [
       {
-        "url": "",
+        "url": "https://compass-lisa-2.herokuapp.com/",
         "description": "Heroku"
       },
       {
