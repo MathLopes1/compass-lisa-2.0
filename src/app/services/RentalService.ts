@@ -45,6 +45,12 @@ class RentalService implements IRentalService {
     if (result == null) throw new NotFound(id);
     return result;
   }
+
+  async updated(id: string, payload: IRental): Promise<IRental> {
+    const result: IRental = await this.rentalRepository.updated(id, payload);
+    if (result == null) throw new NotFound(id);
+    return result;
+  }
 }
 
 export default RentalService;
