@@ -12,8 +12,9 @@ import CarValidationBody from '../validations/CarValidations/CarBody';
 import CarValidationFind from '../validations/CarValidations/CarFind';
 import IdValidation from '../validations/IdValidation';
 import ValidationPatchCar from '../validations/CarValidations/CarPatch';
+import TokenBearer from '../middlewares/BearerToken';
 
-@Controller('/car')
+@Controller('/car', [TokenBearer])
 class CarController {
   private readonly carService: ICarService;
 
