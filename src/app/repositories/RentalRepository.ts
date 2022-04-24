@@ -28,6 +28,11 @@ class RentalRepository implements IRentalRepository {
     const result: IRental = await this.rentalSchema.findById(id);
     return result;
   }
+
+  async updated(id: string, payload: IRental): Promise<IRental> {
+    const result: IRental = await this.rentalSchema.findByIdAndUpdate(id, payload);
+    return result;
+  }
 }
 
 export default RentalRepository;

@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
-import { Controller, Post, Get } from '@decorators/express';
+import {
+  Controller, Post, Get, Put,
+} from '@decorators/express';
 
 import { Inject } from '@decorators/di';
 
@@ -52,6 +54,24 @@ class RentalController {
     try {
       const { id } = req.params;
       const result: IRental = await this.rentalService.findId(id);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(error.statusCode).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
+
+  @Put('/:id')
+  async updated(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params;
+      const payload: IRental = req.body;
+
+      const result = await this.rentalService.updated(id, payload);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(error.statusCode).json({
