@@ -10,6 +10,8 @@ import { IRental } from '../interfaces/Rental/IRental';
 import { IRentalService } from '../interfaces/Rental/IRentalService';
 
 import RentalValidationBody from '../validations/RentalValidations/RentalBody';
+import RentalValidationFind from '../validations/RentalValidations/RentalFind';
+import VadalidationId from '../validations/IdValidation';
 
 @Controller('/rental')
 class RentalController {
@@ -35,7 +37,7 @@ class RentalController {
     }
   }
 
-  @Get('/')
+  @Get('/', [RentalValidationFind])
   async find(req: Request, res: Response): Promise<Response> {
     const search = req.query;
     try {
@@ -51,7 +53,7 @@ class RentalController {
     }
   }
 
-  @Get('/:id')
+  @Get('/:id', [VadalidationId, RentalValidationFind])
   async findId(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
