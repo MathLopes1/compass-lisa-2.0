@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
+
 import { Icar } from '../interfaces/Car/ICar';
 
-const CarSchema = new mongoose.Schema({
+const CarSchema: mongoose.Schema = new mongoose.Schema({
   modelo: {
     type: String,
     required: true,
@@ -20,10 +22,15 @@ const CarSchema = new mongoose.Schema({
       required: true,
     },
   }],
+  quantidadePassageiros: {
+    type: String,
+    required: true,
+  },
 }, {
-  id: false,
   versionKey: false,
 });
+
+CarSchema.plugin(mongoosePaginate);
 
 const Car = mongoose.model<Icar>('Veiculos', CarSchema);
 export default Car;

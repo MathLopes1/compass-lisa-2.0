@@ -1,6 +1,8 @@
 import Server, { Express } from 'express';
+import cors from 'cors';
 import IndexRoutes from '../src/routes/index';
-import './infra/database/mongo/index.ts';
+import Database from './infra/database/mongo/index';
+import ErrorHandle from './app/middlewares/ErrorHandle';
 
 class App {
   readonly server: Express;
@@ -9,16 +11,29 @@ class App {
     this.server = Server();
     this.middlewares();
     this.routes();
+    this.errorHandler();
   }
 
-  middlewares(): void {
+  static async Starting() {
+    const app: App = new App();
+    await Database.connect();
+
+    return app.server;
+  }
+
+  private middlewares(): void {
+    this.server.use(cors());
     this.server.use(Server.json());
     this.server.use(Server.urlencoded({ extended: true }));
   }
 
-  routes(): void {
-    this.server.use('/api', IndexRoutes.routes);
+  private routes(): void {
+    this.server.use('/api', IndexRoutes.routes());
+  }
+
+  private errorHandler(): void {
+    this.server.use(ErrorHandle);
   }
 }
 
-export default new App().server;
+export default App;
