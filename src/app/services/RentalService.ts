@@ -7,6 +7,7 @@ import { IRentalService } from '../interfaces/Rental/IRentalService';
 import { IRentalRepository } from '../interfaces/Rental/IRentalRepository';
 import ViaCep from '../utils/Functions/viaCep';
 import NotFound from '../errors/ErrorsHttp/NotFound';
+import IsConflict from '../utils/Functions/Validations/IsConflict';
 
 @Injectable()
 class RentalService implements IRentalService {
@@ -17,6 +18,10 @@ class RentalService implements IRentalService {
   }
 
   async create(payload: IRental): Promise<IRental> {
+    await IsConflict.validCnpj(payload.cnpj);
+    await IsConflict.ConflictCnpj(payload.cnpj);
+    await IsConflict.ConflictFilial(payload.endereco);
+
     for (let i = 0; i < payload.endereco.length; i++) {
       const ceps: Array<IAdress> = payload.endereco;
       const result: IAdress = ceps[i];

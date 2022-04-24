@@ -1,12 +1,15 @@
 import People from '../../../schema/PeopleSchema';
+import Rental from '../../../schema/RentalSchema';
 
 import Conflict from '../../../errors/ErrorsHttp/Conflict';
 import BadRequest from '../../../errors/ErrorsHttp/BadRequest';
 
-import cpfValid from './IsCpfValid';
+import validateCnpj from './isCnpjValid';
+import validateCpf from './IsCpfValid';
 import isOver18 from './isMajority';
+import { IAdress } from '../../../interfaces/Rental/IRental';
 
-class IsConflit {
+class IsConflict {
   static async conflictEmail(email: string): Promise<void> {
     const getEmail = await People.find({ email });
     if (getEmail.length > 0) {
@@ -22,8 +25,14 @@ class IsConflit {
   }
 
   static async validCpf(cpf: string): Promise<void> {
-    if (cpfValid(cpf) === false) {
+    if (validateCpf(cpf) === false) {
       throw new BadRequest(`cpf '${cpf}' is invalid`);
+    }
+  }
+
+  static async validCnpj(cnpj: string): Promise<void> {
+    if (validateCnpj(cnpj) === false) {
+      throw new BadRequest(`cnpj '${cnpj}' is invalid`);
     }
   }
 
@@ -34,6 +43,21 @@ class IsConflit {
       throw new BadRequest('must be over 18 years old');
     }
   }
+
+  static async ConflictCnpj(cnpj: string): Promise<void> {
+    const getCnpj = await Rental.find({ cnpj });
+    if (getCnpj.length > 0) throw new Conflict('cnpj already exists');
+  }
+
+  static async ConflictFilial(filial: Array<IAdress>): Promise<void> {
+    let count: number = 0;
+    filial.forEach((body) => {
+      if (!body.isFilial) {
+        count += 1;
+      }
+      if (count > 1) throw new Conflict('isFilial');
+    });
+  }
 }
 
-export default IsConflit;
+export default IsConflict;
