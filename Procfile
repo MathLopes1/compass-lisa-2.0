@@ -1,1 +1,2 @@
-web:npm run start:deploy
+web:npm run build
+web:npm run start
