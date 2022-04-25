@@ -15,7 +15,7 @@
     },
     "servers": [
       {
-        "url": "https://compass-lisa-2.herokuapp.com",
+        "url": "https://compass-lisa-2.herokuapp.com/api/v1",
         "description": "Heroku"
       },
       {
