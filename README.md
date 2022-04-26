@@ -1,4 +1,4 @@
-<img height="350" width="1000" src="https://user-images.githubusercontent.com/70352508/165195653-a5f83ffe-c1a2-41a5-b798-ca97ee4a89a6.gif">
+<img height="350" width="800" src="https://user-images.githubusercontent.com/70352508/165195653-a5f83ffe-c1a2-41a5-b798-ca97ee4a89a6.gif">
 
 <h1 align="center">
   <a align="center" href="https://nodejs.org/en/"><img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"></a>
