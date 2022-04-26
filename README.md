@@ -403,7 +403,7 @@ Exemplo de retorno:
 
 ### 🌐 Deploy
  > O deploy foi feito utilizando o heroku para a hospedagem da aplicação.
- - Link para o site da Compass Lisa 2.0: `https://math-compass-lisa-version-2.herokuapp.com/api/v1/api-docs/`
+ - [Link para o site da Compass Lisa 2.0](https://math-compass-lisa-version-2.herokuapp.com/api/v1/api-docs/)
   
 ### 🛠 Tecnologias
 
