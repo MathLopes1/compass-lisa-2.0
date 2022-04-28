@@ -419,7 +419,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <div align=left>
 
-- <table>
+ <table>
   <tr align=center>
     <th><strong> 💻Matheus Lopes </strong></th>
   </tr>
